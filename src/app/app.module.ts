@@ -6,6 +6,7 @@ import {HttpModule} from '@angular/http';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import {AuthService} from './services/auth.service';
+import {FormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -16,9 +17,10 @@ import {AuthService} from './services/auth.service';
   imports: [
     BrowserModule,
     HttpModule,
+    FormsModule,
     RouterModule.forRoot([
       { path: 'login', component: LoginComponent },
-      { path: 'register', component: LoginComponent }
+    //  { path: 'register', component: LoginComponent }
     ])
   ],
   providers: [AuthService],
