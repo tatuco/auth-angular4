@@ -22,14 +22,6 @@ export class LoginComponent {
       .catch((err) => {
         console.log(err);
       });
-    /*const postData = {
-      grant_type: 'password',
-      client_id: 2,
-      client_secret: 'ouUZQuryBk9X3HAjk5yAR0rcwZzeZ8C3KqR8nnjX',
-      email: 'sysadmin@tatuco.com',
-      password: '123456',
-      scope: ''
-    }*/
 
     this.auth.login(this.user)
       .then((user) => {
@@ -40,3 +32,11 @@ export class LoginComponent {
     });
   }
 }
+/*const postData = {
+  grant_type: 'password',
+  client_id: 2,
+  client_secret: 'ouUZQuryBk9X3HAjk5yAR0rcwZzeZ8C3KqR8nnjX',
+  email: 'sysadmin@tatuco.com',
+  password: '123456',
+  scope: ''
+}*/

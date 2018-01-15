@@ -5,7 +5,7 @@ import {User} from '../models/user';
 
 @Injectable()
 export class AuthService  {
-  private BASE_URL = 'http://localhost:8000';
+  private BASE_URL = 'http://localhost:8500';
   private headers: Headers = new Headers({
     'Content-Type': 'application/json',
     'Accept': 'application/json'});
@@ -26,5 +26,14 @@ export class AuthService  {
       'Authorization': `Bearer ${token}`
     });
     return this.http.get(url, {headers: headers}).toPromise();
+  }
+  logout(user: User, token): Promise<any> {
+    const url: string = this.BASE_URL + '/logout';
+    const headers: Headers = new Headers({
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.post(url, user, {headers: headers}).toPromise();
   }
 }
