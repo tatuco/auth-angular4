@@ -5,18 +5,26 @@ import {User} from '../models/user';
 
 @Injectable()
 export class AuthService  {
-  private BASE_URL = 'http://localhost:8500';
+  private BASE_URL = 'http://localhost:8000';
   private headers: Headers = new Headers({
     'Content-Type': 'application/json',
-    'Accept': 'application/json',
-    'Access-Control-Allow-Headers': '*'});
+    'Accept': 'application/json'});
   constructor(private http: Http) { }
-  login(user): Promise<any> {
+  login(user: User): Promise<any> {
     const url: string = this.BASE_URL + '/login';
     return this.http.post(url, user, {headers: this.headers}).toPromise();
   }
   register(user: User): Promise<any> {
     const url: string = this.BASE_URL + '/register';
     return this.http.post(url, user, {headers: this.headers}).toPromise();
+  }
+  ensureAuthenticated(token): Promise<any> {
+    const url: string = this.BASE_URL + '/status';
+    const headers: Headers = new Headers({
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.get(url, {headers: headers}).toPromise();
   }
 }
